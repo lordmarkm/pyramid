@@ -1,0 +1,67 @@
+<div class="widgets">
+  <div class="row">
+      <div class="col-md-12">
+        <div ba-panel ba-panel-title="User List" ba-panel-class="with-scroll">
+          <div class="horizontal-scroll">
+            <button type="button" class="btn btn-primary btn-xs pull-right" style="margin-right: 10px;" ui-sref="user.add">Add User</button>
+            <button type="button" ng-click="vm.getUsers()" class="btn btn-primary btn-xs refresh-sm pull-right" style="margin-right: 10px;"><span class="fa fa-refresh"></span></button>
+            <div class="form-group select-page-size-wrap ">
+            </div>
+            <table class="table" style="table-layout: fixed" st-pipe="vm.getUsers" st-table="vm.users">
+              <thead>
+              <tr class="sortable">
+                <th width="20%" st-sort="username" st-sort-default="true">Username</th>
+                <th width="30%" st-sort="email">E-mail</th>
+                <th width="30%">Details</th>
+                <th width="20%"></th>
+              </tr>
+              <tr>
+                <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input"
+                           type="search"/></th>
+                <th><input st-search="email" placeholder="Search Email" class="input-sm form-control search-input"
+                           type="search"/></th>
+                <th></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="user in vm.users">
+                <td class="table-id">
+                  <div>{{user.username}}</div>
+                </td>
+                <td>
+                    {{user.email}}
+                </td>
+                <td>
+                  <ul style="list-style: none; padding-left: 0px">
+                    <li><small><span class="text-muted">Created</span> {{user.createdDate | date}}</small></li>
+                    <li><small><span class="text-muted">Updated</span> {{user.updatedDate | date}}</small></li>
+                  </ul>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-xs" ui-sref="user-profile({username: user.username})">
+                    View Profile
+                  </button>
+                  <button ng-if="::user.username != 'admin'" type="button" ng-click="vm.deleteUser(user)" class="btn btn-danger btn-xs refresh-sm" style="margin-right: 10px;"><span class="fa fa-trash"></span></button>
+                </td>
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <td colspan="7" class="text-center">
+                  <div st-pagination="" st-template="app/pages/components/smart-table/pagination.html" st-items-by-page="vm.tablePageSize" st-displayed-pages="5"></div>
+                </td>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="text-muted">Showing {{vm.users.length}} of {{vm.totalElements}}</div>
+          <label class="pull-right" style="margin-right: 10px;">
+            <select class="form-control selectpicker show-tick" style="height: 30px; line-height: 14px;" title="Rows on page" selectpicker
+                    ng-model="vm.tablePageSize" ng-options="i for i in [1,5,10,15,20,25]">
+            </select>
+          </label>
+      </div>
+    </div>
+  </div>
+</div>

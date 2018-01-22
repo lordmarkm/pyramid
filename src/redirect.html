@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carissa</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+
+    <meta name="google-signin-client_id" content="82717429779-itkjgroice61jqnkpj3gh9adggml2bsf.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+    <main class="auth-main">
+        <div class="auth-block">
+            <h1>Please wait...</h1>
+            <p class="text-center m-t-m text-sm">2017 © Payment Gateway Admin by <a href="http://mynt.xyz">Mynt.</a></p>
+        </div>
+    </main>
+</body>
+
+<script type="text/javascript">
+window.onload = function () {
+  gapi.load('auth2', function() {
+    gapi.auth2.init().then(function () {
+        var auth2 = gapi.auth2.getAuthInstance();
+        var isSignedIn = auth2.isSignedIn.get();
+        googleUser = auth2.currentUser.get();
+        console.debug('googleUser=' + JSON.stringify(googleUser.getBasicProfile()));
+        if (isSignedIn) {
+            window.location.href = '/pyramid.html';
+        } else {
+            window.location.href = '/auth.html';
+        }
+    });
+  });
+}
+</script>
+
+</html>

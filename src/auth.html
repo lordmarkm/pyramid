@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carissa</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+
+    <meta name="google-signin-client_id" content="82717429779-itkjgroice61jqnkpj3gh9adggml2bsf.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+    <main class="auth-main">
+        <div class="auth-block">
+            <h1>Sign in to Carissa's Pyramid Scheme</h1>
+
+            <div class="al-share-auth">
+                <ul class="al-share clearfix">
+                    <li><div class="g-signin2" data-onsuccess="onSignIn"></div></li>
+                </ul>
+            </div>
+            
+            <p class="text-center m-t-m text-sm">2017 © Payment Gateway Admin by <a href="http://mynt.xyz">Mynt.</a></p>
+        </div>
+    </main>
+</body>
+
+<script type="text/javascript">
+window.onSignIn = function (googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+    gapi.load('auth2', function () {
+      var auth2 = gapi.auth2.init();
+      console.debug('signed in? ' + auth2.isSignedIn.get());
+      googleUser = auth2.currentUser.get();
+      console.debug('googleUser=' + JSON.stringify(googleUser.getBasicProfile()));
+      window.location.href = '/#/dashboard';
+    });
+}
+</script>
+
+</html>

@@ -38,6 +38,7 @@ selenium_standalone_*
 paho*
 src/app/services/config.js
 src/assets/js/auth.js
+libs
 
 # generated files frontend
 bower_components
