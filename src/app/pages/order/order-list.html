@@ -1,0 +1,45 @@
+<div class="form-group select-page-size-wrap ">
+  <label>Rows on page
+    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+            ng-model="vm.smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+    </select>
+  </label>
+</div>
+{{vm.orders}}
+<table class="table" st-table="vm.orders">
+  <thead>
+  <tr class="sortable ">
+    <th class="table-id">#</th>
+    <th st-sort="item" st-sort-default="true">Item</th>
+    <th st-sort="price">Price</th>
+    <th st-sort="quantity">Qty</th>
+    <th st-sort="total_price">Total price</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th><input st-search="item" placeholder="Search First Name" class="input-sm form-control search-input"
+               type="search"/></th>
+    <th><input st-search="price" placeholder="Search Last Name" class="input-sm form-control search-input"
+               type="search"/></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="order in vm.orders">
+    <td class="table-id"></td>
+    <td>{{order.item}}</td>
+    <td>{{order.price}}</td>
+    <td>{{order.quantity}}</td>
+    <td>{{order.total_price}}</td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="6" class="text-center">
+      <div st-pagination="" st-items-by-page="vm.smartTablePageSize" st-displayed-pages="5"></div>
+    </td>
+  </tr>
+  </tfoot>
+</table>
