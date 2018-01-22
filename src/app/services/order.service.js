@@ -13,8 +13,8 @@
       let url = 'https://script.google.com/macros/s/AKfycbzHLXKYQ1glzkp0NOVFhUCRvYVXbkstXuFeGuZk50VsDRTnIFZ5/exec';
 
       let d = $q.defer();
-      window.findMyOrders = function (orders) {
-        d.resolve(orders);
+      window.findMyOrders = function (resp) {
+        d.resolve(resp.orders);
       }
       $http.jsonp(url);
       return d.promise;

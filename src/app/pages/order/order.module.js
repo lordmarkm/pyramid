@@ -25,12 +25,8 @@
                   'app/pages/order/order.list.ctrl.js',
                 ]);
             },
-            orders: function ($q, orderService) {
-              let deferred = $q.defer();
-              orderService.findMyOrders().then(function (resp) {
-                deferred.resolve(resp.orders);
-              });
-              return deferred.promise;
+            orders: function (orderService) {
+              return orderService.findMyOrders();
             }
         }
       });
